@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { fetchCategory } from './features/categorySlice/categorySlice';
+import { fetchProduct } from './features/productSlice/productSlice';
+import { useAppDispatch, useAppSelector } from './store';
+
+
 
 function App() {
+  const dispatch = useAppDispatch()
+  const categories = useAppSelector(state => state.category)
+  const products = useAppSelector(state => state.product)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <button onClick={() => dispatch(fetchCategory())}>Fetch Category</button>
+
+      <button onClick={() => dispatch(fetchProduct())}>Fetch Product</button>
+      <div >
+        {categories.loading ? <h1>Loading</h1> : (
+          <div>{categories.data?.categories.map((category) => <p>{category.name}</p>)}</div>
+        )}
+      </div>
+      <div >
+        {products.loading ? <h1>Loading</h1> : (
+          <p>{products.data?.products.map((product) => <h1>{product.name}</h1>)}</p>
+        )}
+      </div>
     </div>
   );
 }
