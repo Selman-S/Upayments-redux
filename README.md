@@ -11,7 +11,7 @@
 
 <br>
 
-[Clik Me]([https://selman-task-tracker-react.netlify.app/](https://selman-reactjs.vercel.app/))
+[Clik Me](https://selman-reactjs.vercel.app/)
 
 <br>
 
