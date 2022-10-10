@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading'
 import { fetchCategory } from '../features/categorySlice/categorySlice'
-import { fetchProduct, filteredCategory } from '../features/productSlice/productSlice'
+import { addFavorite, deleteProduct, fetchProduct, filteredCategory, removeFavorite } from '../features/productSlice/productSlice'
 import { useAppDispatch, useAppSelector } from '../store'
-import { Category } from '../types/types'
+import { Category, Product } from '../types/types'
 
 
 const Home = () => {
@@ -29,6 +29,13 @@ const Home = () => {
 
   const handleAllCategories = () => {
     setAllProducts(true)
+  }
+  const handleFavorite = (product:Product) => {
+    if (products.favorites?.includes(product)) {
+      dispatch(removeFavorite(product))
+    } else {
+      dispatch(addFavorite(product))
+    }
   }
   return (
     <div className="mx-auto">
@@ -61,9 +68,11 @@ const Home = () => {
             <div>
 
               {allProducts ? products.data.map((product, index) => (
-                <div className="max-w-2xl hover-div flex cursor-pointer mx-auto my-4" key={index} onClick={() =>
+                <div className='flex'  key={index}>
+                  <div className="w-80 sm:w-4/6 lg:w-4/6  hover-div flex cursor-pointer  my-4" onClick={() =>
                   navigate('/details/' + product._id, { state: product, replace: false })
                 }>
+
                   <img className='w-32 h-40 object-cover ' src={product.avatar} alt={product.name} />
                   <div className='mx-10'>
                     <h1 className='overflow-hidden font-semibold text-xl'>{product.name.slice(0, 40)}</h1>
@@ -72,6 +81,21 @@ const Home = () => {
 
                     <p className="bg-fuchsia-100 mt-10 text-fuchsia-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded font-semibold text-xl">{product.price}$</p>
                   </div>
+                  </div>
+                  
+<div className='display-inline '> <i
+className={
+'fa-solid fa-heart cursor-pointer mt-28 text-2xl ' +
+(products.favorites?.includes(product) ? 'text-red-600' : '')
+}
+onClick={() => handleFavorite(product)}
+></i>
+
+<button className="bg-rose-500  hover:bg-rose-700 text-white font-medium py-1 px-2 rounded ml-5" onClick={() => dispatch(deleteProduct(product))} >
+  Delete
+</button>
+</div>
+                 
                 </div>
               )) : products.filteredData?.map((product, index) => (
                 <div className="max-w-2xl hover-div flex cursor-pointer mx-auto my-4" key={index} onClick={() =>
@@ -84,6 +108,13 @@ const Home = () => {
                     <span className="bg-blue-100 mt-4 text-blue-700 text-md  mr-2 px-2.5 py-0.5 rounded font-medium font-semibold ">{product.category}</span>
 
                     <span className="bg-fuchsia-100 mt-4 text-fuchsia-700 text-md font-medium mr-2 px-2.5 py-0.5 rounded font-semibold ">{product.price}$</span>
+
+                  </div>
+                  <div>
+
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Button
+</button>
                   </div>
                 </div>
               ))}

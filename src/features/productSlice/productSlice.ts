@@ -66,6 +66,11 @@ const productSlice = createSlice({
     state.favorites = state.favorites?.filter((fav)=> fav._id!==action.payload._id)
   
     return state
+   },
+   deleteProduct:(state,action:PayloadAction<Product>)=>{
+    state.data = state.data?.filter((fav)=> fav._id!==action.payload._id)
+  
+    return state
    }
   },
 
@@ -107,6 +112,6 @@ const productSlice = createSlice({
   },
 })
 
-export const {filteredCategory,addFavorite,removeFavorite} = productSlice.actions
+export const {filteredCategory,addFavorite,removeFavorite,deleteProduct} = productSlice.actions
 export default productSlice.reducer
 
