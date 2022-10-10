@@ -17,11 +17,13 @@ const Favorites = () => {
     }
   }
   return (
-    <div className="flex">
+    <div className="container">
+
+    <div className="flex flex-wrap gap-1">
       {products.favorites?.map((state, i) => (
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto my-14">
-          <figure>
-            <img src={state.avatar} alt="Shoes" />
+        <div className="card xs:w-full w-96 bg-base-100 object-cover shadow-xl mx-auto my-14">
+          <figure className="h-96 overflow-hidden ">
+            <img src={state.avatar} className="object-cover" alt={state.name} />
           </figure>
           <div className="card-body">
             <h2 className="card-title">
@@ -45,13 +47,14 @@ const Favorites = () => {
                   (products.favorites?.includes(state) ? 'text-red-600' : '')
                 }
                 onClick={() => handleFavorite(state)}
-              ></i>
+                ></i>
               <div className="badge badge-accent">{state.category}</div>
             </div>
           </div>
         </div>
       ))}
     </div>
+      </div>
   )
 }
 

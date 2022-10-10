@@ -22,9 +22,9 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl mx-auto my-14">
+    <div className="card max-w-xl xs:w-full bg-base-100 shadow-xl mx-auto my-14">
       <figure>
-        <img src={state.avatar} alt="Shoes" />
+        <img src={state.avatar} alt="Shoes" className=" object-cover" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">
