@@ -21,7 +21,7 @@ const Favorites = () => {
 
     <div className="flex flex-wrap gap-1">
       {products.favorites?.map((state, i) => (
-        <div className="card xs:w-full w-96 bg-base-100 object-cover shadow-xl mx-auto my-14">
+        <div className="card sm:w-96 w-80 bg-base-100 object-cover shadow-xl mx-auto my-14">
           <figure className="h-96 overflow-hidden ">
             <img src={state.avatar} className="object-cover" alt={state.name} />
           </figure>
