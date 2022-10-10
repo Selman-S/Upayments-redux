@@ -1,4 +1,4 @@
-import { Category, CategoryState, Iconfig, RootCategory } from './../../types/types';
+import { Category, CategoryState, Iconfig } from './../../types/types';
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import axios from "axios"
 

@@ -1,13 +1,14 @@
 
 import {
   BrowserRouter,
-  Navigate,
-  Outlet,
   Route,
   Routes,
 } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import CreateProduct from '../pages/CreateProduct';
+import Favorites from '../pages/Favorites';
 import Home from '../pages/Home';
+import ProductDetail from '../pages/ProductDetail';
 
 
 const AppRouter = () => {
@@ -17,6 +18,11 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreateProduct />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/details/:id" element={<ProductDetail />} />
+
+
         {/* <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/details/:id" element={<PrivateRouter />}>

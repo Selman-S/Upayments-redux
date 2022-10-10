@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
 
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 border-b">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -15,7 +15,7 @@ const Navbar = () => {
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to='/'>Home</Link></li>
 
-            <li><Link to='/'>Favorites</Link></li>
+            <li><Link to='/favorites'>Favorites</Link></li>
           </ul>
         </div>
         <Link to='/' className="btn btn-ghost normal-case text-xl">uPayments</Link>
@@ -24,11 +24,11 @@ const Navbar = () => {
         <ul className="menu menu-horizontal p-0">
           <li><Link to='/'>Home</Link></li>
 
-          <li><Link to='/'>Favorites</Link></li>
+          <li><Link to='/favorites'>Favorites</Link></li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to='/' className="btn">Get started</Link>
+        <Link to='/create' className="btn">Create a Product</Link>
       </div>
     </div>
 

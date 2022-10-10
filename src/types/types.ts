@@ -43,7 +43,8 @@ export interface RootProduct {
 }
 
 export interface ProductState {
-  data:RootProduct|null,
+  data:Product[]|null|undefined,
   loading:boolean,
-  error:string
+  error:string,
+  filteredData:Product[]|undefined
   }

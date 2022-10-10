@@ -1,5 +1,5 @@
-import {   Iconfig, Product, ProductState, RootProduct } from './../../types/types';
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
+import { Iconfig, Product, ProductState, RootProduct } from './../../types/types';
+import {createAsyncThunk, createSlice, current, PayloadAction} from "@reduxjs/toolkit"
 import axios from "axios"
 
 
@@ -7,7 +7,8 @@ const initialState:ProductState = {
 
   data:null,
   loading:false,
-  error:''
+  error:'',
+  filteredData:[]
 
 }
 
@@ -25,8 +26,10 @@ export const fetchProduct = createAsyncThunk("fetchProduct",async() =>{
     },
   };
   
-  const response = await axios.get<Product[]>(getProductUrl,config)
-  return response.data
+  const response = await axios.get<RootProduct>(getProductUrl,config)
+  console.log(response);
+  
+  return response.data.products
 
 })
 
@@ -35,7 +38,14 @@ const productSlice = createSlice({
 
   name:'product',
   initialState,
-  reducers:{},
+  reducers:{
+    filteredCategory:(state,action:PayloadAction<string>)=>{
+      console.log(current(state));
+      const newData = current(state).data?.filter((product)=>product.category===action.payload)
+      console.log(newData);
+      state.filteredData = newData
+   }
+  },
 
   extraReducers:(builder)=>{
     builder.addCase(fetchProduct.pending, (state,action)=> {
@@ -57,6 +67,6 @@ const productSlice = createSlice({
 
   },
 })
-
+export const {filteredCategory} = productSlice.actions
 export default productSlice.reducer
 
