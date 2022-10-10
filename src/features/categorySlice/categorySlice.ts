@@ -25,7 +25,7 @@ export const fetchCategory = createAsyncThunk("fetchCategory",async() =>{
     },
   };
   
-  const response = await axios.get<Category>(getCategoryUrl,config)
+  const response = await axios.get<Category[]>(getCategoryUrl,config)
   return response.data
 
 })

@@ -12,7 +12,7 @@ const initialState:ProductState = {
 }
 
 
-export const fetchProduct = createAsyncThunk("fetchCategory",async() =>{
+export const fetchProduct = createAsyncThunk("fetchProduct",async() =>{
   
   const token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1bmR1emdlY2U1NDZAZ21haWwuY29tIiwiZ2l0aHViIjoiaHR0cHM6Ly9naXRodWIuY29tL1NlbG1hbi1TIiwiaWF0IjoxNjY1MzAwOTQzLCJleHAiOjE2NjU3MzI5NDN9.6kC34j4SpK-qcskuxPObcRFHrmAYC6JlKHgoJNh0EQk"
   
@@ -25,7 +25,7 @@ export const fetchProduct = createAsyncThunk("fetchCategory",async() =>{
     },
   };
   
-  const response = await axios.get<Product>(getProductUrl,config)
+  const response = await axios.get<Product[]>(getProductUrl,config)
   return response.data
 
 })
