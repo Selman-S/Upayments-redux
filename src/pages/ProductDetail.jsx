@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import {
+  addFavorite,
+  removeFavorite,
+} from '../features/productSlice/productSlice'
+import { useAppDispatch, useAppSelector } from '../store'
 
 const ProductDetail = () => {
+  const dispatch = useAppDispatch()
+  const products = useAppSelector(state => state.product)
   const { state } = useLocation()
-  console.log(state)
+
+  useEffect(() => {}, [])
+
+  const handleFavorite = () => {
+    if (products.favorites?.includes(state)) {
+      dispatch(removeFavorite(state))
+    } else {
+      dispatch(addFavorite(state))
+    }
+  }
+
   return (
     <div className="card w-96 bg-base-100 shadow-xl mx-auto my-14">
       <figure>
@@ -24,7 +41,14 @@ const ProductDetail = () => {
         </div>
         <p>{state.description}</p>
 
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-between mt-5 ">
+          <i
+            className={
+              'fa-solid fa-heart cursor-pointer  text-2xl ' +
+              (products.favorites?.includes(state) ? 'text-red-600' : '')
+            }
+            onClick={() => handleFavorite()}
+          ></i>
           <div className="badge badge-accent">{state.category}</div>
         </div>
       </div>

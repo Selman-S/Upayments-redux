@@ -15,7 +15,6 @@ const CreateProduct = () => {
   })
   const dispatch = useAppDispatch()
   const categories = useAppSelector(state => state.category)
-  console.log(postObj)
 
   useEffect(() => {
     dispatch(fetchCategory())
@@ -24,7 +23,14 @@ const CreateProduct = () => {
   const handleSubmit = e => {
     e.preventDefault()
     dispatch(postProduct(postObj))
-    console.log('bastı')
+    setPostObj({
+      name: '',
+      avatar: '',
+      description: '',
+      price: 0,
+      category: 'Electronics',
+      developerEmail: 'gunduzgece546@gmail.com',
+    })
   }
 
   return (
@@ -54,7 +60,7 @@ const CreateProduct = () => {
                     id="name"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name"
-                    required=""
+                    required
                     value={postObj.name}
                     onChange={e =>
                       setPostObj({ ...postObj, name: e.target.value })
@@ -74,7 +80,7 @@ const CreateProduct = () => {
                     id="price"
                     placeholder="price"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                     value={postObj.price}
                     onChange={e =>
                       setPostObj({ ...postObj, price: e.target.value })
@@ -116,7 +122,7 @@ const CreateProduct = () => {
                     id="description"
                     placeholder="description"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                     value={postObj.description}
                     onChange={e =>
                       setPostObj({ ...postObj, description: e.target.value })
@@ -136,7 +142,7 @@ const CreateProduct = () => {
                     id="avatar"
                     placeholder="avatar"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
+                    required
                     value={postObj.avatar}
                     onChange={e =>
                       setPostObj({ ...postObj, avatar: e.target.value })

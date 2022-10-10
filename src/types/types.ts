@@ -47,6 +47,7 @@ export interface ProductState {
   loading:boolean,
   error:string,
   filteredData:Product[]|undefined
+  favorites:Product[]|undefined
   }
 
  export interface IpostObj  {

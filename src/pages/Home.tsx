@@ -13,7 +13,7 @@ const Home = () => {
   const products = useAppSelector(state => state.product)
   const [allProducts, setAllProducts] = useState<boolean>(true)
   const navigate = useNavigate();
-  console.log(products);
+
 
 
   useEffect(() => {
@@ -51,60 +51,45 @@ const Home = () => {
               ))}
             </tbody>
           </table>)}
-
         </div>
-
-
         <div className="my-10">
           {products.data && (<div>
-
-
-            {/* <div className='my-5 mx-auto text-center'>
-
-
-              <select className="select select-primary  w-full max-w-xs" id='filterCategory' defaultValue='All Category'>
-                <option   >All Category</option>
-                {categories.data?.categories.map((category, index) => <option key={index} value={category.name}>{category.name}</option>)}
-
-
-              </select>
-            </div> */}
             <div className='text-center my-5'>
-
               <button onClick={() => handleAllCategories()} className='btn btn-primary text-white'>All Category</button>
             </div>
-            <table className='table border table-fixed w-1/2 mx-auto '>
-              <thead>
-                <tr>
-                  <th className='bg-indigo-700 text-white w-10'></th>
-                  <th className='bg-indigo-700 text-white w-50'>  Products</th>
-                  <th className='bg-indigo-700 text-white'>  Category</th>
-                  <th className='bg-indigo-700 text-white'>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allProducts ? products.data.map((product, index) => (
-                  <tr className="w-full hover cursor-pointer" key={index} onClick={() =>
-                    navigate('/details/' + product._id, { state: product, replace: false })
-                  }>
-                    <th >{index + 1}</th>
-                    <td className='overflow-hidden'>{product.name}</td>
-                    <td className='overflow-hidden'>{product.category}</td>
-                    <td >{product.price}</td>
-                  </tr>
-                )) : products.filteredData?.map((product, index) => (
-                  <tr className="w-full hover cursor-pointer" key={index} onClick={() =>
-                    navigate('/details/' + product._id, { state: product, replace: false })
-                  }>
-                    <th >{index + 1}</th>
-                    <td className='overflow-hidden'>{product.name}</td>
-                    <td className='overflow-hidden'>{product.category}</td>
-                    <td >{product.price}</td>
-                  </tr>
-                ))}
 
-              </tbody>
-            </table>
+            <div>
+
+              {allProducts ? products.data.map((product, index) => (
+                <div className="max-w-2xl hover-div flex cursor-pointer mx-auto my-4" key={index} onClick={() =>
+                  navigate('/details/' + product._id, { state: product, replace: false })
+                }>
+                  <img className='w-32 h-40 object-cover ' src={product.avatar} alt={product.name} />
+                  <div className='mx-10'>
+                    <h1 className='overflow-hidden font-semibold text-xl'>{product.name.slice(0, 40)}</h1>
+
+                    <h3 className='overflow-hidden'>{product.category}</h3>
+
+                    <p className="bg-fuchsia-100 mt-10 text-fuchsia-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded font-semibold text-xl">{product.price}$</p>
+                  </div>
+                </div>
+              )) : products.filteredData?.map((product, index) => (
+                <div className="max-w-2xl hover-div flex cursor-pointer mx-auto my-4" key={index} onClick={() =>
+                  navigate('/details/' + product._id, { state: product, replace: false })
+                }>
+                  <img className='w-32 h-40 object-cover ' src={product.avatar} alt={product.name} />
+                  <div className='mx-10'>
+                    <h1 className='overflow-hidden font-semibold text-xl'>{product.name.slice(0, 40)}</h1>
+
+                    <span className="bg-blue-100 mt-4 text-blue-700 text-md  mr-2 px-2.5 py-0.5 rounded font-medium font-semibold ">{product.category}</span>
+
+                    <span className="bg-fuchsia-100 mt-4 text-fuchsia-700 text-md font-medium mr-2 px-2.5 py-0.5 rounded font-semibold ">{product.price}$</span>
+                  </div>
+                </div>
+              ))}
+
+            </div>
+
           </div>
           )}
 

@@ -8,7 +8,8 @@ const initialState:ProductState = {
   data:null,
   loading:false,
   error:'',
-  filteredData:[]
+  filteredData:[],
+  favorites:[]
 
 }
 
@@ -56,6 +57,15 @@ const productSlice = createSlice({
     filteredCategory:(state,action:PayloadAction<string>)=>{
       const newData = current(state).data?.filter((product)=>product.category===action.payload)
       state.filteredData = newData
+   },
+   addFavorite:(state,action:PayloadAction<Product>)=>{
+    state.favorites?.push(action.payload)
+    return state
+   },
+   removeFavorite:(state,action:PayloadAction<Product>)=>{
+    state.favorites = state.favorites?.filter((fav)=> fav._id!==action.payload._id)
+  
+    return state
    }
   },
 
@@ -78,21 +88,25 @@ const productSlice = createSlice({
     builder.addCase(postProduct.pending, (state,action)=> {
       state.loading = false;
      state.error='Post is pending'
+     console.log(state.error);
+     
     });
     
     builder.addCase(postProduct.fulfilled, (state,action)=> {
       state.loading = false;
      state.error='post done' 
+     console.log(state.error);
     });
 
     builder.addCase(postProduct.rejected, (state,action)=> {
       state.loading = false;
      state.error='Post is error'
+     console.log(state.error);
     });
 
   },
 })
 
-export const {filteredCategory} = productSlice.actions
+export const {filteredCategory,addFavorite,removeFavorite} = productSlice.actions
 export default productSlice.reducer
 
