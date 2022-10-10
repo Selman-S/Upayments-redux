@@ -39,10 +39,10 @@ const Home = () => {
   }
   return (
     <div className="mx-auto">
-      <div className="container m-auto my-10 mx-auto">
-        <div className="overflow-x-auto mx-auto ">
+      <div className="container  my-10 mx-auto">
+        <div className="overflow-x-auto  ">
 
-          {categories.loading ? <Loading /> : (<table className="table border   w-1/2 mx-auto"> <thead>
+          {categories.loading ? <Loading /> : (<table className="table border  w-full lg:w-1/2  lg:mx-auto "> <thead>
             <tr>
               <th className='bg-indigo-700 text-white '></th>
               <th className='bg-indigo-700 text-white'>Categories</th>
@@ -65,11 +65,11 @@ const Home = () => {
               <button onClick={() => handleAllCategories()} className='btn btn-primary text-white'>All Category</button>
             </div>
 
-            <div>
+            <div className=''>
 
               {allProducts ? products.data.map((product, index) => (
-                <div className='flex'  key={index}>
-                  <div className="w-80 sm:w-4/6 lg:w-4/6  hover-div flex cursor-pointer  my-4" onClick={() =>
+                <div className='flex '  key={index}>
+                  <div className="w-80 sm:w-4/6 lg:w-4/6  hover-div flex cursor-pointer  my-4 mx-auto " onClick={() =>
                   navigate('/details/' + product._id, { state: product, replace: false })
                 }>
 
@@ -83,7 +83,7 @@ const Home = () => {
                   </div>
                   </div>
                   
-<div className='display-inline '> <i
+<div className='display-inline'> <i
 className={
 'fa-solid fa-heart cursor-pointer mt-28 text-2xl ' +
 (products.favorites?.includes(product) ? 'text-red-600' : '')
@@ -98,24 +98,34 @@ onClick={() => handleFavorite(product)}
                  
                 </div>
               )) : products.filteredData?.map((product, index) => (
-                <div className="max-w-2xl hover-div flex cursor-pointer mx-auto my-4" key={index} onClick={() =>
+                <div className='flex '  key={index}>
+                  <div className="w-80 sm:w-4/6 lg:w-4/6  hover-div flex cursor-pointer  my-4 mx-auto " onClick={() =>
                   navigate('/details/' + product._id, { state: product, replace: false })
                 }>
+
                   <img className='w-32 h-40 object-cover ' src={product.avatar} alt={product.name} />
                   <div className='mx-10'>
                     <h1 className='overflow-hidden font-semibold text-xl'>{product.name.slice(0, 40)}</h1>
 
-                    <span className="bg-blue-100 mt-4 text-blue-700 text-md  mr-2 px-2.5 py-0.5 rounded font-medium font-semibold ">{product.category}</span>
+                    <h3 className='overflow-hidden'>{product.category}</h3>
 
-                    <span className="bg-fuchsia-100 mt-4 text-fuchsia-700 text-md font-medium mr-2 px-2.5 py-0.5 rounded font-semibold ">{product.price}$</span>
-
+                    <p className="bg-fuchsia-100 mt-10 text-fuchsia-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded font-semibold text-xl">{product.price}$</p>
                   </div>
-                  <div>
+                  </div>
+                  
+<div className='display-inline'> <i
+className={
+'fa-solid fa-heart cursor-pointer mt-28 text-2xl ' +
+(products.favorites?.includes(product) ? 'text-red-600' : '')
+}
+onClick={() => handleFavorite(product)}
+></i>
 
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-  Button
+<button className="bg-rose-500  hover:bg-rose-700 text-white font-medium py-1 px-2 rounded ml-5" onClick={() => dispatch(deleteProduct(product))} >
+  Delete
 </button>
-                  </div>
+</div>
+                 
                 </div>
               ))}
 
