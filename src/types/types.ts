@@ -48,3 +48,12 @@ export interface ProductState {
   error:string,
   filteredData:Product[]|undefined
   }
+
+ export interface IpostObj  {
+    name: string,
+    avatar: string,
+    description: string,
+    price: 1679,
+    category: string,
+    developerEmail: string,
+  }

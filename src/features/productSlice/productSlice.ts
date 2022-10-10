@@ -25,14 +25,28 @@ export const fetchProduct = createAsyncThunk("fetchProduct",async() =>{
         `Bearer ${token}`,
     },
   };
-  
-  const response = await axios.get<RootProduct>(getProductUrl,config)
-  console.log(response);
-  
-  return response.data.products
 
+  const response = await axios.get<RootProduct>(getProductUrl,config)
+
+  return response.data.products
 })
 
+export const postProduct = createAsyncThunk("postProduct",async(obj:any) =>{
+  
+  const token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1bmR1emdlY2U1NDZAZ21haWwuY29tIiwiZ2l0aHViIjoiaHR0cHM6Ly9naXRodWIuY29tL1NlbG1hbi1TIiwiaWF0IjoxNjY1MzAwOTQzLCJleHAiOjE2NjU3MzI5NDN9.6kC34j4SpK-qcskuxPObcRFHrmAYC6JlKHgoJNh0EQk"
+  
+  const getProductUrl:string = "https://upayments-studycase-api.herokuapp.com/api/products"
+
+  const config:Iconfig = {
+    headers: {
+      Authorization:
+        `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(getProductUrl,obj,config)
+  return response.data.products
+})
 
 const productSlice = createSlice({
 
@@ -40,9 +54,7 @@ const productSlice = createSlice({
   initialState,
   reducers:{
     filteredCategory:(state,action:PayloadAction<string>)=>{
-      console.log(current(state));
       const newData = current(state).data?.filter((product)=>product.category===action.payload)
-      console.log(newData);
       state.filteredData = newData
    }
   },
@@ -55,8 +67,6 @@ const productSlice = createSlice({
 
     builder.addCase(fetchProduct.fulfilled, (state,action:PayloadAction<any>)=> {
       state.data =action.payload;
-      console.log(action.payload);
-      
       state.loading = false;
     });
 
@@ -65,8 +75,24 @@ const productSlice = createSlice({
       state.error ='Error Fetchin product data'
     });
 
+    builder.addCase(postProduct.pending, (state,action)=> {
+      state.loading = false;
+     state.error='Post is pending'
+    });
+    
+    builder.addCase(postProduct.fulfilled, (state,action)=> {
+      state.loading = false;
+     state.error='post done' 
+    });
+
+    builder.addCase(postProduct.rejected, (state,action)=> {
+      state.loading = false;
+     state.error='Post is error'
+    });
+
   },
 })
+
 export const {filteredCategory} = productSlice.actions
 export default productSlice.reducer
 
