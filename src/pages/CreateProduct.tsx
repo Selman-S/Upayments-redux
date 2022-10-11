@@ -20,8 +20,8 @@ const CreateProduct = () => {
     dispatch(fetchCategory())
   }, [])
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (event:any) => {
+    event.preventDefault()
     dispatch(postProduct(postObj))
     setPostObj({
       name: '',
@@ -83,7 +83,7 @@ const CreateProduct = () => {
                     required
                     value={postObj.price}
                     onChange={e =>
-                      setPostObj({ ...postObj, price: e.target.value })
+                      setPostObj({ ...postObj, price: +e.target.value })
                     }
                   />
                 </div>

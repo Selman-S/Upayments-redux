@@ -9,7 +9,7 @@ const Favorites = () => {
   const products = useAppSelector(state => state.product)
   const dispatch = useAppDispatch()
 
-  const handleFavorite = state => {
+  const handleFavorite = (state:any) => {
     if (products.favorites?.includes(state)) {
       dispatch(removeFavorite(state))
     } else {
@@ -32,10 +32,10 @@ const Favorites = () => {
             </h2>
             <div className="flex">
               <span className="text-xs font-light text-gray-400 mr-4">
-                {state.createdAt.slice(0, 10)}
+                {state.createdAt.toString().slice(0, 10)}
               </span>
               <span className="text-xs font-light text-gray-400">
-                {state.createdAt.slice(11, 16)}
+                {state.createdAt.toString().slice(11, 16)}
               </span>
             </div>
             <p>{state.description}</p>
