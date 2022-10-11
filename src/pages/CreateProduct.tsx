@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Loading from '../components/Loading'
 import { fetchCategory } from '../features/categorySlice/categorySlice'
 import { postProduct } from '../features/productSlice/productSlice'
 import { useAppDispatch, useAppSelector } from '../store'

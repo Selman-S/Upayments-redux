@@ -4,8 +4,6 @@ import { addFavorite, deleteProduct, removeFavorite } from '../features/productS
 import { useAppDispatch, useAppSelector } from '../store';
 import { Product } from '../types/types';
 
-
-
 const ProductView = (product:Product) =>{
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
