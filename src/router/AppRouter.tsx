@@ -22,12 +22,6 @@ const AppRouter = () => {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/details/:id" element={<ProductDetail />} />
 
-
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/details/:id" element={<PrivateRouter />}>
-          <Route path="" element={<MovieDetail />} />
-        </Route> */}
       </Routes>
     </BrowserRouter>
   );
