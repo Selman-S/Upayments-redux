@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   addFavorite,
   removeFavorite,
@@ -10,8 +10,10 @@ const ProductDetail = () => {
   const dispatch = useAppDispatch()
   const products = useAppSelector(state => state.product)
   const { state } = useLocation()
+  const navigate = useNavigate();
 
-  useEffect(() => {}, [])
+
+
 
   const handleFavorite = () => {
     if (products.favorites?.includes(state)) {
@@ -21,8 +23,10 @@ const ProductDetail = () => {
     }
   }
 
-  return (
-    <div className="card sm:w-96 w-80 xs:w-full bg-base-100 shadow-xl mx-auto my-14">
+  return (<div className="flex flex-col align-center justify-center">
+<i className="fa-solid fa-arrow-left text-3xl mt-10 ml-16 cursor-pointer" onClick={() => navigate('/')}></i>
+
+    <div className="card sm:w-96 w-80 xs:w-full bg-base-100 shadow-xl mx-auto my-5">
       <figure>
         <img src={state.avatar} alt="Shoes" className=" object-cover" />
       </figure>
@@ -48,11 +52,12 @@ const ProductDetail = () => {
               (products.favorites?.includes(state) ? 'text-red-600' : '')
             }
             onClick={() => handleFavorite()}
-          ></i>
+            ></i>
           <div className="badge badge-accent">{state.category}</div>
         </div>
       </div>
     </div>
+            </div>
   )
 }
 

@@ -13,7 +13,7 @@ const Home = () => {
   const categories = useAppSelector(state => state.category)
   const products = useAppSelector(state => state.product)
   const [allProducts, setAllProducts] = useState<boolean>(true)
-  const navigate = useNavigate();
+
 
 
 
@@ -31,13 +31,7 @@ const Home = () => {
   const handleAllCategories = () => {
     setAllProducts(true)
   }
-  const handleFavorite = (product:Product) => {
-    if (products.favorites?.includes(product)) {
-      dispatch(removeFavorite(product))
-    } else {
-      dispatch(addFavorite(product))
-    }
-  }
+ 
   return (
     <div className="mx-auto">
       <div className="container  my-10 mx-auto">
