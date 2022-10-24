@@ -14,7 +14,7 @@ const initialState:CategoryState = {
 
 export const fetchCategory = createAsyncThunk("fetchCategory",async() =>{
   
-  const token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1bmR1emdlY2U1NDZAZ21haWwuY29tIiwiZ2l0aHViIjoiaHR0cHM6Ly9naXRodWIuY29tL1NlbG1hbi1TIiwiaWF0IjoxNjY1MzAwOTQzLCJleHAiOjE2NjU3MzI5NDN9.6kC34j4SpK-qcskuxPObcRFHrmAYC6JlKHgoJNh0EQk"
+  const token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNkc3JobDI0QGdtYWlsLmNvbSIsImdpdGh1YiI6Imh0dHBzOi8vZ2l0aHViLmNvbS9TZWxtYW4tUyIsImlhdCI6MTY2NjU5OTAyMywiZXhwIjoxNjY3MDMxMDIzfQ.7r--Ac7Jhv3WsvXOj1P22jDIpbwGBuyTxQDdUEvuRPk"
   
   const getCategoryUrl:string = "https://upayments-studycase-api.herokuapp.com/api/categories/"
 
