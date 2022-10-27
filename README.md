@@ -1,5 +1,5 @@
 
-<h1>Hi I’m Selman 👋. Welcome to my Project </h1>
+<h1>Hi I’m Selman 👋. Welcome to my Upayments project </h1>
 
 <br>
 
