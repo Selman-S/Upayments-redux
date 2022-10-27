@@ -34,6 +34,7 @@ export const fetchProduct = createAsyncThunk("fetchProduct",async() =>{
  
     return response.data.products
   } catch (error) {
+    // if token is not valid
     return products
   }
 })

@@ -32,6 +32,7 @@ export const fetchCategory = createAsyncThunk("fetchCategory",async() =>{
     return response.data
     
   } catch (error) {
+        // if token is not valid
     return category
   }
 
