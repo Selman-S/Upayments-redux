@@ -20,6 +20,7 @@ const Home = () => {
 
   }, [])
 
+
   const handleClick = (category: Category) => {
     dispatch(filteredCategory(category.name))
     setAllProducts(false)
@@ -39,6 +40,7 @@ const Home = () => {
   return (
     <div className="mx-auto">
       <div className="container  my-10 mx-auto">
+        
         <div className="overflow-x-auto  ">
           {categories.loading ? <Loading /> : (<table className="table border  w-full lg:w-1/2  lg:mx-auto "> <thead>
             <tr>

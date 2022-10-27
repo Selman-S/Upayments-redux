@@ -1,6 +1,7 @@
 import { Iconfig, Product, ProductState, RootProduct } from './../../types/types';
 import {createAsyncThunk, createSlice, current, PayloadAction} from "@reduxjs/toolkit"
 import axios from "axios"
+import {products} from '../../helper/data'
 
 
 const initialState:ProductState = {
@@ -27,9 +28,14 @@ export const fetchProduct = createAsyncThunk("fetchProduct",async() =>{
     },
   };
 
-  const response = await axios.get<RootProduct>(getProductUrl,config)
-
-  return response.data.products
+  try {
+    
+    const response = await axios.get<RootProduct>(getProductUrl,config)
+ 
+    return response.data.products
+  } catch (error) {
+    return products
+  }
 })
 
 export const postProduct = createAsyncThunk("postProduct",async(obj:any) =>{

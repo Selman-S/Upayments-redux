@@ -1,7 +1,7 @@
 import { Category, CategoryState, Iconfig } from './../../types/types';
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import axios from "axios"
-
+import {category} from '../../helper/data'
 
 const initialState:CategoryState = {
 
@@ -25,8 +25,15 @@ export const fetchCategory = createAsyncThunk("fetchCategory",async() =>{
     },
   };
   
-  const response = await axios.get<Category[]>(getCategoryUrl,config)
-  return response.data
+  try {
+    const response = await axios.get<Category[]>(getCategoryUrl,config)
+    
+
+    return response.data
+    
+  } catch (error) {
+    return category
+  }
 
 })
 
